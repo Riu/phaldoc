@@ -9,8 +9,7 @@
 {{ stylesheet_link("assets/css/style.css") }}
 </head>
 <body>
-
-
+{{ content() }}
 {{ javascript_include("assets/js/html5.js") }}
 {{ javascript_include("assets/js/jquery-1.10.1.min.js") }}
 {{ javascript_include("assets/js/bootstrap.min.js") }}
