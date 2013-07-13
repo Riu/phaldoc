@@ -3,10 +3,15 @@
 class IndexController extends ControllerBase
 {
 
-    public function indexAction()
-    {
+	public function initialize()
+	{
+		parent::initialize();
+	}
 
-    }
+	public function indexAction()
+	{
+
+	}
 
 }
 
