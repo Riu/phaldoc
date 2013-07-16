@@ -1,0 +1,21 @@
+html {
+	background-color: #ddd;
+}
+body {
+	font-family: Arial, sans-serif;
+	background-color: #fff;
+	position: relative;
+	padding-top: 36px;
+	color: #333;
+}
+
+#footer {
+        height: 40px;
+}
+#footer {
+        background-color: #ddd;
+ }
+.footer{
+color: #555;
+padding: 10px 0px 0px; font-size: 13px;
+}
