@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
  */
@@ -59,3 +60,43 @@ $di->set('session', function() {
 	$session->start();
 	return $session;
 });
+
+/**
+* Loading routes from the routes.php file
+*/
+$di->set('router', function() {
+	return require __DIR__ . '/routes.php';
+});
+
+/**
+* Flash service with custom CSS classes
+*/
+$di->set('flash', function(){
+	$flash = new \Phalcon\Flash\Direct(array(
+		'error' => 'alert alert-error',
+		'success' => 'alert alert-success',
+		'notice' => 'alert alert-info',
+	));
+	return $flash;
+});
+
+/**
+ * Cookies service
+ */
+$di->set('cookies', function() use ($di){
+	$cookies = new \Phalcon\Http\Response\Cookies();
+	$cookies->useEncryption(false);
+	return $cookies;
+});
+
+
+/**
+ * dispatcher
+ */
+
+$di->set('dispatcher', function() use ($di) {
+	$dispatcher = new \Phalcon\Mvc\Dispatcher();
+	return $dispatcher;
+});
+
+

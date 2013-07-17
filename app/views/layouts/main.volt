@@ -25,7 +25,11 @@
 		</section>
 	</section>
 </section>
+<section class="container">
+	<section class="row">
 {{ content() }}
+	</section>
+</section>
 <footer id="footer">
 	<section class="container">
 		<section class="row">

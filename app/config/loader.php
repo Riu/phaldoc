@@ -10,6 +10,8 @@ $loader->registerDirs(
 		$config->application->controllersDir,
 		$config->application->modelsDir,
 		$config->application->cacheDir,
-		$config->application->viewsDir
+		$config->application->viewsDir,
+		$config->application->libraryDir
 	)
-)->register();
+);
+$loader->register();

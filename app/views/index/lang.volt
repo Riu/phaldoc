@@ -1,3 +1,3 @@
 <section class="span12">
-<h2>Welcome</h2>
+<h2>{{ lang }}</h2>
 </section>
