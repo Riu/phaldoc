@@ -21,8 +21,8 @@ class IndexController extends ControllerBase
 
 	public function settingsAction()
 	{
-		$lang = $this->cookies->get('lang');
-		$this->view->setVar("lange", $lang);
+		$lang = $this->session->get('lang');
+		$this->view->setVar("lang", $lang);
 	}
 
 	public function langAction()

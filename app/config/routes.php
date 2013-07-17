@@ -2,7 +2,12 @@
 
 $router = new \Phalcon\Mvc\Router();
 
-$router->add('/:action', array(
+$router->add('/(languages|files|parts)', array(
+'controller' => 1,
+'action' => 'index'
+));
+
+$router->add('/(about|settings)', array(
 'controller' => 'index',
 'action' => 1
 ));
