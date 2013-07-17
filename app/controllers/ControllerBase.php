@@ -10,11 +10,11 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 		Tag::setDoctype(Tag::HTML5); 
 		Tag::setTitle('Phaldoc');
 
-		$lang = $this->session->get('lang');
+		$lang = $this->session->get('lansg');
 
 		if(empty($lang))
 		{
-			$cl = $this->cookies->get('lang');
+			$cl = $this->cookies->get('lang')->getValue();
 
 			if(!empty($cl))
 			{

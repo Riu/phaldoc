@@ -35,7 +35,7 @@
 		<section class="row">
 			<section class="span12">
 				<section class="footer">
-		      			<p>Created by {{ link_to('https://github.com/Riu','Riu','title':'Riu') }} {{ version() }}. <?php echo number_format(memory_get_usage() / 1048576, 2) ?> mb memory used.</p>
+		      			<p>Created by {{ link_to('https://github.com/Riu','Riu','title':'Riu') }}, in Phalcon {{ version() }}. <?php echo number_format(memory_get_usage() / 1048576, 2) ?> mb memory used.</p>
 				</section>
 			</section>
 		</section>
