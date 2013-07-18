@@ -10,7 +10,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 		Tag::setDoctype(Tag::HTML5); 
 		Tag::setTitle('Phaldoc');
 
-		$lang = $this->session->get('lansg');
+		$lang = $this->session->get('lang');
 
 		if(empty($lang))
 		{
@@ -30,6 +30,21 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 		else
 		{
 			$this->session->set('lang', $lang);
+		}
+		$this->langid();
+	}
+
+	protected function langid()
+	{
+		$lang = $this->session->get('lang');
+		$langid = $this->session->get('langid');
+		if(empty($langid))
+		{
+			$lang = PhaldocLangs::findFirst("lang = '$lang'");
+			if(!empty($lang->id))
+			{
+				$this->session->set('langid', $lang->id);
+			}
 		}
 	}
 }

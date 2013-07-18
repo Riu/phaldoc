@@ -91,7 +91,7 @@ $di->set('cookies', function() use ($di){
 
 
 /**
- * dispatcher
+ * Dispatcher
  */
 
 $di->set('dispatcher', function() use ($di) {
@@ -99,4 +99,8 @@ $di->set('dispatcher', function() use ($di) {
 	return $dispatcher;
 });
 
+/**
+ * Models Manager
+ */
+$di->set('modelsManager', new \Phalcon\Mvc\Model\Manager());
 

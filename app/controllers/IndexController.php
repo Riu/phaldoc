@@ -10,13 +10,6 @@ class IndexController extends ControllerBase
 
 	public function indexAction()
 	{
-		$lang = $this->session->get('lang');
-
-		$files = PhaldocFiles::findFirst("rst = 'index'");
-		$this->view->setVar("index", $index);
-
-		$langs = PhaldocFiles::find("rst != 'index'");
-		$this->view->setVar("langs", $langs);
 			
 	}
 
