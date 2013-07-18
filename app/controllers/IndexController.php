@@ -21,7 +21,13 @@ class IndexController extends ControllerBase
 
 	public function settingsAction()
 	{
+
 		$lang = $this->session->get('lang');
+
+		$langs = PhaldocLangs::find();
+		$this->view->setVar("langs", $langs);
+
+		$lang = PhaldocLangs::findFirst("lang = '$lang'");
 		$this->view->setVar("lang", $lang);
 	}
 
