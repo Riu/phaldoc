@@ -1,6 +1,6 @@
 <section class="span12">
 <h2>Settings</h2>
-<p>Your deafault language is <strong>{{ lang.langname }}</strong>.</p>
+<p>Your deafault language is <strong>{{ lang.langname }}</strong>. That give you list of files in chosen language.</p>
 {% if langs %}
 <table class="table table-striped">
 <thead>
