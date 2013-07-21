@@ -9,10 +9,23 @@ class PhaldocDocs extends \Phalcon\Mvc\Model
 	public $title;
 	public $value;
 	public $status;
+	public $updated;
+
+	public function initialize()
+	{
+
+		$this->skipAttributesOnCreate(array('id'));
+
+	}
 
 	public function getSource()
 	{
 		return 'phaldoc_docs';
+	}
+
+	public function beforeUpdate()
+	{
+		$this->updated = time();
 	}
 
 }

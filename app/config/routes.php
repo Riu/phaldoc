@@ -18,4 +18,10 @@ $router->add('/lang/{lang:[a-z]{2}}', array(
 'lang' => 'pl'
 ));
 
+$router->add('/setup/([0-9]+)', array(
+'controller' => 'setup',
+'action' => 'index',
+'part' => 1
+));
+
 return $router;

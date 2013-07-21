@@ -1,9 +1,11 @@
 CREATE TABLE IF NOT EXISTS `phaldoc_files` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(10) unsigned NOT NULL DEFAULT '1',
   `ordinal` smallint(4) unsigned NOT NULL DEFAULT '1',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `rst` varchar(128) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `parent_id` (`parent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 
@@ -14,22 +16,23 @@ CREATE TABLE IF NOT EXISTS `phaldoc_langs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
+INSERT INTO `phaldoc_langs` (`id`, `lang`, `langname`) VALUES
+(1, 'en', 'English');
 
 CREATE TABLE IF NOT EXISTS `phaldoc_parts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `file_id` int(10) unsigned NOT NULL,
-  `parent_id` int(10) unsigned NOT NULL DEFAULT '1',
   `ordinal` smallint(4) unsigned NOT NULL DEFAULT '1',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `is_tree` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `updated` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `file_id` (`file_id`),
-  KEY `parent_id` (`parent_id`)
+  KEY `file_id` (`file_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 
 ALTER TABLE `phaldoc_parts`
-  ADD CONSTRAINT `phaldoc_parts_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `phaldoc_files` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phaldoc_parts_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `phaldoc_parts` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `phaldoc_parts_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `phaldoc_files` (`id`) ON DELETE CASCADE;
 
 CREATE TABLE IF NOT EXISTS `phaldoc_docs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -38,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `phaldoc_docs` (
   `title` varchar(32) NOT NULL DEFAULT '',
   `value` text,
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `updated` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `lang_id` (`lang_id`),
   KEY `part_id` (`part_id`)
