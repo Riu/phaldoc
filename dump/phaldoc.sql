@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `phaldoc_docs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `lang_id` int(10) unsigned NOT NULL,
   `part_id` int(10) unsigned NOT NULL,
-  `title` varchar(32) NOT NULL DEFAULT '',
+  `title` varchar(160) NOT NULL DEFAULT '',
   `value` text,
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `updated` int(10) unsigned NOT NULL DEFAULT '0',

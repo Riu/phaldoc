@@ -6,16 +6,24 @@
 <tr>
 <th>Short name</th>
 <th>Full name</th>
+<th>Type</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 {% for file in files %}
 <tr>
-<td>{{ file.lang }}</td>
-<td>{{ file.langname }}</td>
+<td>{{ file.title }}</td>
+<td>{{ file.rst }}</td>
+{% if file.type == '1' %}
+<td>Main file</td>
+{% elseif file.type == '2' %}
+<td>Reference</td>
+{% else %}
+<td>API</td>
+{% endif %}
 <td>
-{{ link_to('lang/' ~ items.lang,'Choose language','class':'btn btn-success btn-small') }} 
+{{ link_to('lang/' ~ file.id,'Choose language','class':'btn btn-success btn-small') }} 
 </td>
 </tr>
 {% endfor %}

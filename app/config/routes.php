@@ -2,6 +2,11 @@
 
 $router = new \Phalcon\Mvc\Router();
 
+$router->add('/', array(
+'controller' => 'files',
+'action' => 'index'
+));
+
 $router->add('/(languages|files|parts)', array(
 'controller' => 1,
 'action' => 'index'
