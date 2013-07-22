@@ -58,7 +58,6 @@ class FilesController extends ControllerBase
 	{
 		
 		$id = $this->dispatcher->getParam("id");
-
 		$file = PhaldocFiles::findFirst("id = '$id'");
 		$parent = $file->parent_id;
 		$ordinal = $file->ordinal;
@@ -82,7 +81,38 @@ class FilesController extends ControllerBase
 
 	public function deleteAction()
 	{
+		$id = $this->dispatcher->getParam("id");
+		$file = PhaldocFiles::findFirst("id = '$id'");
+		if($_POST AND $file->is_parent !== '1')
+		{
+			$name = $file->rst.'.rst';
+			$parent_id = $file->parent_id;
+			$parent = PhaldocFiles::find("parent_id = '$parent_id'");
+			$count = $parent->count();
+			$np = PhaldocFiles::findFirst("id = '$parent_id'");
 
+			if(empty($count))
+			{
+				$np->is_parent = '0';
+				$np->update();
+			}
+			if($file->delete())
+			{
+
+
+				$dir = $this->config->application->docsDir;
+				$langs = PhaldocLangs::find();
+				foreach($langs as $l)
+				{
+#					$f = $dir.$l['lang'].'/'.$name;
+#					if (file_exists($f)) {
+#						unlink($f)
+#					}
+				}
+				$this->response->redirect('files/'.$np->id);
+			}
+		}
+		$this->view->setVar("file", $file);
 
 	}
 
