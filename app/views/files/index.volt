@@ -4,6 +4,7 @@
 <table class="table table-striped table-condensed table-bordered">
 <thead>
 <tr>
+<th>#</th>
 <th>Title</th>
 <th>Parts</th>
 <th>Info</th>
@@ -14,6 +15,7 @@
 <tbody>
 {% for file in files %}
 <tr>
+<td>{{ file.ordinal }} </td>
 <td>{{ link_to('parts/' ~ file.file_id,file.title) }} </td>
 <td>
 {% if file.is_parent == '1' %}

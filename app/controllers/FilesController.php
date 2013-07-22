@@ -42,5 +42,46 @@ class FilesController extends ControllerBase
 		$this->view->setVar("count", $count);
 	}
 
+	public function moveAction()
+	{
+		$id = $this->dispatcher->getParam("id");
+
+		$file = PhaldocFiles::findFirst("id = '$id'");
+		$parent = $file->parent_id;
+		$ordinal = $file->ordinal;
+
+		if($ordinal !== '1')
+		{
+			$newordinal = $ordinal-1;
+
+			$filesave = new PhaldocFiles();
+			$filesave->id = $id;
+			$filesave->ordinal = $newordinal;
+			$filesave->update();
+
+			$file2 = PhaldocFiles::findFirst("id = '$id' AND ordinal = '$newordinal'");
+
+			$file2save = new PhaldocFiles();
+			$file2save->id = $file2->id;
+			$file2save->ordinal = $ordinal;
+			$file2save->update();
+
+		}
+
+		$this->response->redirect('files/'.$parent);
+	}
+
+	public function deleteAction()
+	{
+
+
+	}
+
+	public function addAction()
+	{
+
+
+	}
+
 }
 
