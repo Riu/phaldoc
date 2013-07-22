@@ -57,7 +57,9 @@
 {% if lang == '1' %}
 <td>
 {% if file.file_id > '1' %}
-{{ link_to('files/delete/' ~ file.file_id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }} 
+{% if file.is_parent != '1' %}
+{{ link_to('files/delete/' ~ file.file_id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }}
+{% endif %} 
 {% endif %}
 </td>
 <td>
