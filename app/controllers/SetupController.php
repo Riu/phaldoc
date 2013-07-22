@@ -173,7 +173,13 @@ class SetupController extends ControllerBase
 			$i = 1;
 			foreach($result as $part)
 			{
-
+				if($part['is_tree']==='1')
+				{
+					$newpart = new PhaldocFiles();
+					$newpart->id = $fileid;
+					$newpart->is_parent = 1;
+					$newpart->update();
+				}
 				$newpart = new PhaldocParts();
 				$newpart->file_id = $fileid;
 				$newpart->ordinal = $i;

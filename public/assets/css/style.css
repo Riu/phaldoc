@@ -10,12 +10,16 @@ body {
 }
 
 #footer {
-        height: 40px;
+	height: 40px;
 }
 #footer {
-        background-color: #ddd;
- }
+	background-color: #ddd;
+}
 .footer{
 color: #555;
 padding: 10px 0px 0px; font-size: 13px;
+}
+
+.btn-subs{
+margin-bottom:6px;
 }

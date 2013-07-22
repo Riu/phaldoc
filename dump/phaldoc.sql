@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `phaldoc_files` (
   `parent_id` int(10) unsigned NOT NULL DEFAULT '1',
   `ordinal` smallint(4) unsigned NOT NULL DEFAULT '1',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `is_parent` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `rst` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`)

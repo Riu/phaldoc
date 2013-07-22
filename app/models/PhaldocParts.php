@@ -14,7 +14,7 @@ class PhaldocParts extends \Phalcon\Mvc\Model
 	{
 
 		$this->skipAttributesOnCreate(array('id'));
-
+		$this->useDynamicUpdate(true);
 	}
 
 	public function getSource()

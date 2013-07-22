@@ -6,7 +6,13 @@ class PhaldocFiles extends \Phalcon\Mvc\Model
 	public $parent_id;
 	public $ordinal;
 	public $type;
+	public $is_parent;
 	public $rst;
+
+	public function initialize()
+	{
+		$this->useDynamicUpdate(true);
+	}
 
 	public function getSource()
 	{

@@ -7,7 +7,13 @@ $router->add('/', array(
 'action' => 'index'
 ));
 
-$router->add('/(languages|files|parts)', array(
+$router->add('/files/([0-9]+)', array(
+'controller' => 'files',
+'action' => 'index',
+'parent' => 1
+));
+
+$router->add('/(languages|parts)', array(
 'controller' => 1,
 'action' => 'index'
 ));

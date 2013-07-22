@@ -1,29 +1,54 @@
 <section class="span12">
-<h2>Files</h2>
+<h3>{{ title }}</h3>
 {% if count %}
-<table class="table table-striped">
+<table class="table table-striped table-condensed table-bordered">
 <thead>
 <tr>
-<th>Short name</th>
-<th>Full name</th>
-<th>Type</th>
+<th>Title</th>
+<th>Parts</th>
+<th>Info</th>
+<th></th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 {% for file in files %}
 <tr>
-<td>{{ file.title }}</td>
-<td>{{ file.rst }}</td>
-{% if file.type == '1' %}
-<td>Main file</td>
-{% elseif file.type == '2' %}
-<td>Reference</td>
-{% else %}
-<td>API</td>
-{% endif %}
+<td>{{ link_to('parts/' ~ file.file_id,file.title) }} </td>
 <td>
-{{ link_to('lang/' ~ file.id,'Choose language','class':'btn btn-success btn-small') }} 
+{% if file.is_parent == '1' %}
+{{ link_to('files/' ~ file.file_id,'<i class="icon-folder-open icon-white"></i> view subdocuments','class':'btn btn-info btn-small btn-subs') }} 
+<br>
+{% endif %}
+{{ link_to('parts/' ~ file.file_id,'<i class="icon-th-list"></i> view parts of files','class':'btn btn-mini') }} 
+</td>
+<td>
+{% if file.status == '1' %}
+<span class="label label-success">current version</span>
+{% elseif file.status == '2' %}
+<span class="label label-important">out-of-date</span>
+{% elseif file.status == '3' %}
+<span class="label label-info">new part</span>
+{% else %}
+<span class="label label-warning">subparts to update</span>
+{% endif %}
+
+<span class="label label-inverse">{{ file.rst }}</span>
+{% if file.type == '1' %}
+<span class="label">Main file</span>
+{% elseif file.type == '2' %}
+<span class="label">Reference</span>
+{% else %}
+<span class="label">API</span>
+{% endif %}
+</td>
+<td>
+{{ link_to('files/delete/' ~ file.file_id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }} 
+</td>
+<td>
+{% if file.ordinal > '1' %}
+{{ link_to('files/move/' ~ file.file_id,'<i class="icon-arrow-up icon-white"></i>','class':'btn btn-inverse btn-mini') }} 
+{% endif %}
 </td>
 </tr>
 {% endfor %}
