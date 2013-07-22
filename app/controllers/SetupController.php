@@ -102,6 +102,7 @@ class SetupController extends ControllerBase
 				$new->parent_id = $parent;
 				$new->ordinal = $i;
 				$new->type = $type;
+				$new->is_parent = '0';
 				$new->rst = $a;
 				$new->create();
 				$i++;
