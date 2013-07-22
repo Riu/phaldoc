@@ -116,6 +116,7 @@ class SetupController extends ControllerBase
 		$files = PhaldocFiles::find();
 		foreach($files as $file)
 		{
+
 			$new = $dir.$file->rst.'.rst';
 			$fileid = $file->id;
 			$lines = file($new);
@@ -172,14 +173,12 @@ class SetupController extends ControllerBase
 			}
 			
 			$i = 1;
+			$tree = 0;
 			foreach($result as $part)
 			{
-				if($part['is_tree']==='1')
+				if(!empty($part['is_tree']))
 				{
-					$newpart = new PhaldocFiles();
-					$newpart->id = $fileid;
-					$newpart->is_parent = 1;
-					$newpart->update();
+					$tree = 1;
 				}
 				$newpart = new PhaldocParts();
 				$newpart->file_id = $fileid;
@@ -209,6 +208,13 @@ class SetupController extends ControllerBase
 				$doc->create();
 
 				$i++;
+			}
+
+			if(!empty($tree))
+			{
+				$fileup = PhaldocFiles::findFirst("id = '$fileid'");
+				$fileup->is_parent = '1';
+				$fileup->update();
 			}
 
 		}
