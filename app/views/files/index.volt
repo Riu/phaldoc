@@ -4,7 +4,9 @@
 {% if id > 1 %}
 {{ link_to('files/' ~ parent,'<i class="icon-arrow-up icon-white"></i> go to parent list','class':'btn btn-info') }} 
 {% endif %}
+{% if lang == '1' %}
 {{ link_to('files/add/' ~ parent,'<i class="icon-plus icon-white"></i> add new file','class':'btn btn-success') }}
+{% endif %}
 </p>
 {% if count %}
 <table class="table table-striped table-condensed table-bordered">
@@ -14,8 +16,10 @@
 <th>Title</th>
 <th>Parts</th>
 <th>Info</th>
+{% if lang == '1' %}
 <th></th>
 <th></th>
+{% endif %}
 </tr>
 </thead>
 <tbody>
@@ -50,14 +54,18 @@
 <span class="label">API</span>
 {% endif %}
 </td>
+{% if lang == '1' %}
 <td>
+{% if file.file_id > '1' %}
 {{ link_to('files/delete/' ~ file.file_id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }} 
+{% endif %}
 </td>
 <td>
 {% if file.ordinal > '1' %}
 {{ link_to('files/move/' ~ file.file_id,'<i class="icon-arrow-up icon-white"></i>','class':'btn btn-inverse btn-mini') }} 
 {% endif %}
 </td>
+{% endif %}
 </tr>
 {% endfor %}
 </tbody>

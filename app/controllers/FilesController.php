@@ -6,6 +6,15 @@ class FilesController extends ControllerBase
 	public function initialize()
 	{
 		parent::initialize();
+		$action = $this->dispatcher->getParam("action");
+		if($action !== 'index')
+		{
+			$langid = $this->session->get('langid');
+			if($langid !== '1')
+			{
+				$this->response->redirect('');
+			}
+		}
 	}
 
 	public function indexAction()
@@ -38,6 +47,7 @@ class FilesController extends ControllerBase
 
 		$count = $files->count();
 		$this->view->setVar("title", $title);
+		$this->view->setVar("lang", $langid);
 		$this->view->setVar("id", $index->id);
 		$this->view->setVar("parent", $index->parent_id);
 		$this->view->setVar("files", $files);
@@ -46,6 +56,7 @@ class FilesController extends ControllerBase
 
 	public function moveAction()
 	{
+		
 		$id = $this->dispatcher->getParam("id");
 
 		$file = PhaldocFiles::findFirst("id = '$id'");
