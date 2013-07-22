@@ -38,6 +38,8 @@ class FilesController extends ControllerBase
 
 		$count = $files->count();
 		$this->view->setVar("title", $title);
+		$this->view->setVar("id", $index->id);
+		$this->view->setVar("parent", $index->parent_id);
 		$this->view->setVar("files", $files);
 		$this->view->setVar("count", $count);
 	}
@@ -54,21 +56,17 @@ class FilesController extends ControllerBase
 		{
 			$newordinal = $ordinal-1;
 
-			$filesave = new PhaldocFiles();
-			$filesave->id = $id;
-			$filesave->ordinal = $newordinal;
-			$filesave->update();
+			$file->ordinal = $newordinal;
 
-			$file2 = PhaldocFiles::findFirst("id = '$id' AND ordinal = '$newordinal'");
+			$prev = PhaldocFiles::findFirst("id != '1' AND parent_id = '$parent' AND ordinal = '$newordinal'");
+			$prev->ordinal = $ordinal;
 
-			$file2save = new PhaldocFiles();
-			$file2save->id = $file2->id;
-			$file2save->ordinal = $ordinal;
-			$file2save->update();
+			if($file->update() AND $prev->update())
+			{
+				$this->response->redirect('files/'.$parent);
+			}
 
 		}
-
-		$this->response->redirect('files/'.$parent);
 	}
 
 	public function deleteAction()

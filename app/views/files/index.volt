@@ -1,5 +1,11 @@
 <section class="span12">
 <h3>{{ title }}</h3>
+<p>
+{% if id > 1 %}
+{{ link_to('files/' ~ parent,'<i class="icon-arrow-up icon-white"></i> go to parent list','class':'btn btn-info') }} 
+{% endif %}
+{{ link_to('files/add/' ~ parent,'<i class="icon-plus icon-white"></i> add new file','class':'btn btn-success') }}
+</p>
 {% if count %}
 <table class="table table-striped table-condensed table-bordered">
 <thead>
