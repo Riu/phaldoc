@@ -1,5 +1,6 @@
 <section class="span12">
 <h3>{{ title }}</h3>
+{{ flashSession.output() }}
 <p>
 {% if id > 1 %}
 {{ link_to('files/' ~ parent,'<i class="icon-arrow-up icon-white"></i> go to parent list','class':'btn btn-info') }} 

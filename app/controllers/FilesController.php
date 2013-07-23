@@ -189,7 +189,7 @@ class FilesController extends ControllerBase
 					}
 
 					$this->flashSession->success("File has been successfully added");
-					$this->response->redirect('files/add/'.$id);
+					$this->response->redirect('files/'.$id);
 				}
 			}
 		}
