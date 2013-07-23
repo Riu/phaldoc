@@ -17,6 +17,9 @@
 <th>Parts</th>
 <th>Info</th>
 {% if lang == '1' %}
+{% if id == '1' %}
+<th></th>
+{% endif %}
 <th></th>
 <th></th>
 {% endif %}
@@ -55,6 +58,9 @@
 {% endif %}
 </td>
 {% if lang == '1' %}
+{% if id == '1' %}
+<th>{{ link_to('files/add/' ~ file.file_id,'<i class="icon-plus-sign icon-white"></i>','class':'btn btn-mini btn-success') }}</th>
+{% endif %}
 <td>
 {% if file.file_id > '1' %}
 {% if file.is_parent != '1' %}
