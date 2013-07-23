@@ -118,8 +118,9 @@ class FilesController extends ControllerBase
 
 	public function addAction()
 	{
-
-
+		$id = $this->dispatcher->getParam("id");
+		$file = PhaldocFiles::findFirst("id = '$id'");
+		$this->view->setVar("file", $file);
 	}
 
 }
