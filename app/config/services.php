@@ -87,6 +87,14 @@ $di->set('flash', function(){
 	return $flash;
 });
 
+$di->set('flashSession', function(){
+	return new \Phalcon\Flash\Session(array(
+		'error' => 'alert alert-error',
+		'success' => 'alert alert-success',
+		'notice' => 'alert alert-info',
+	));
+});
+
 /**
  * Cookies service
  */

@@ -158,11 +158,8 @@ class FilesController extends ControllerBase
 
 				if (!$file->create()) 
 				{
-					foreach ($file->getMessages() as $message) 
-					{
-						$this->flashSession->error((string) $message);
+						$this->flashSession->error('All inputs are required');
 						$this->response->redirect('files/add/'.$id);
-					}
 				} 
 				else 
 				{
@@ -198,7 +195,7 @@ class FilesController extends ControllerBase
 		}
 		else
 		{
-			return $this->dispatcher->forward(array("controller" => "contacts", "action" => "new"));
+			return $this->dispatcher->forward(array("controller" => "files", "action" => "add","id" => $id));
 		}
 	}
 

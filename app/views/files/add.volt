@@ -5,6 +5,7 @@
 {{ link_to('files/' ~ file.parent_id,'<i class="icon-arrow-up icon-white"></i> go to parent file','class':'btn btn-info') }}</p>
 {% else %}
 	<p>You add subdocument for <strong>{{ file.rst }}.rst</strong></p>
+	{{ flashSession.output() }}
 	{{ form('files/create/' ~ file.id, 'method': 'post') }}
 	<fieldset>
 	<label>File name</label>
