@@ -98,6 +98,10 @@ class SetupController extends ControllerBase
 
 			foreach($array as $a)
 			{
+				if($a==='api/index')
+				{
+					$type = 3;
+				}
 				$new = new PhaldocFiles();
 				$new->parent_id = $parent;
 				$new->ordinal = $i;

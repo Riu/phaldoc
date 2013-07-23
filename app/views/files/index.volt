@@ -5,7 +5,7 @@
 {{ link_to('files/' ~ parent,'<i class="icon-arrow-up icon-white"></i> go to parent list','class':'btn btn-info') }} 
 {% endif %}
 {% if lang == '1' %}
-{{ link_to('files/add/' ~ parent,'<i class="icon-plus icon-white"></i> add new file','class':'btn btn-success') }}
+{{ link_to('files/add/' ~ id,'<i class="icon-plus icon-white"></i> add new file','class':'btn btn-success') }}
 {% endif %}
 </p>
 {% if count %}

@@ -121,6 +121,85 @@ class FilesController extends ControllerBase
 		$id = $this->dispatcher->getParam("id");
 		$file = PhaldocFiles::findFirst("id = '$id'");
 		$this->view->setVar("file", $file);
+
+		$count = PhaldocFiles::find("parent_id = '$id' AND id != '$id'");
+
+		$count = $count->count();
+		$count++;
+		$this->view->setVar("ordinal", $count);
+	}
+
+	public function createAction()
+	{
+		$id = $this->dispatcher->getParam("id");
+		if ($this->request->isPost()) 
+		{
+			$rst = $this->request->getPost("rst", "striptags");
+			$rst = \Phalcon\Tag::friendlyTitle($rst,'_',TRUE);
+			$title = $this->request->getPost("title", "striptags");
+			$ordinal = $this->request->getPost("ordinal");
+			$type = $this->request->getPost("type");
+
+			$count = PhaldocFiles::findFirst("rst = '$rst' AND type = '$type'");
+
+			if(!empty($count))
+			{
+				$this->flashSession->error('File exist');
+				$this->response->redirect('files/add/'.$id);
+			}
+			else
+			{
+				$file = new PhaldocFiles();
+				$file->parent_id = $id;
+				$file->ordinal = $ordinal;
+				$file->type = $type;
+				$file->is_parent = '0';
+				$file->rst = $rst;
+
+				if (!$file->create()) 
+				{
+					foreach ($file->getMessages() as $message) 
+					{
+						$this->flashSession->error((string) $message);
+						$this->response->redirect('files/add/'.$id);
+					}
+				} 
+				else 
+				{
+
+					$newpart = new PhaldocParts();
+					$newpart->file_id = $file->id;
+					$newpart->ordinal = 1;
+					$newpart->type = 1;
+					$newpart->is_tree = 0;
+					$newpart->updated = time();
+					$newpart->create();
+					$part_id = $newpart->id;
+
+					$dir = $this->config->application->docsDir;
+					$langs = PhaldocLangs::find();
+
+					foreach($langs as $l)
+					{
+						$doc = new PhaldocDocs();
+						$doc->lang_id = $l->id;
+						$doc->part_id = $part_id;
+						$doc->title = $title;
+						$doc->value = '';
+						$doc->updated = time();
+						$doc->status = 3;
+						$doc->create();
+					}
+
+					$this->flashSession->success("File has been successfully added");
+					$this->response->redirect('files/add/'.$id);
+				}
+			}
+		}
+		else
+		{
+			return $this->dispatcher->forward(array("controller" => "contacts", "action" => "new"));
+		}
 	}
 
 }
