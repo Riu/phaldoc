@@ -130,6 +130,7 @@ class FilesController extends ControllerBase
 			$rst = $this->request->getPost("rst", "striptags");
 			$rst = \Phalcon\Tag::friendlyTitle($rst,'_',TRUE);
 			$title = $this->request->getPost("title", "striptags");
+			$title = trim($title);
 			$ordinal = $this->request->getPost("ordinal");
 			$type = $this->request->getPost("type");
 

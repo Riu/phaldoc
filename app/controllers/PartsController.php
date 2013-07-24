@@ -39,6 +39,7 @@ class PartsController extends ControllerBase
 		$part = PhaldocParts::findFirst("id = '$id'");
 		$file = $part->file_id;
 		$ordinal = $part->ordinal;
+		$type = $part->type;
 
 		if($ordinal !== '1')
 		{
@@ -48,6 +49,12 @@ class PartsController extends ControllerBase
 
 			$prev = PhaldocParts::findFirst("file_id = '$file' AND ordinal = '$newordinal'");
 			$prev->ordinal = $ordinal;
+
+			if($newordinal==='1')
+			{
+				$part->type = '1';
+				$prev->type = $type;
+			}
 
 			if($part->update() AND $prev->update())
 			{
@@ -156,12 +163,57 @@ class PartsController extends ControllerBase
 		\Phalcon\Tag::displayTo("title", $doc->title);
 		\Phalcon\Tag::displayTo("value", $doc->value);
 		\Phalcon\Tag::setDefault("type", $part->type);
+		\Phalcon\Tag::setDefault("status", $doc->status);
 	}
 
 	public function saveAction()
 	{
+		$id = $this->dispatcher->getParam("id");
+		if ($this->request->isPost()) 
+		{
+			$title = $this->request->getPost("title", "striptags");
+			$value = $this->request->getPost("value");
+			$type = $this->request->getPost("type");
+			$status = $this->request->getPost("status");
+			$part = PhaldocParts::findFirst("id = '$id'");
+			$fileid = $part->file_id;
+			$part->type = $type;
 
+			$langid = $this->session->get('langid');
+			if($langid==='1')
+			{
+				$part->updated = time();
+			}
+			$doc = PhaldocDocs::findFirst("part_id = '$id' AND lang_id = '$langid'");
+			$doc->title = $title;
+			$doc->value = $value;
+			$doc->status = $status;
+			$doc->updated = time();
+			if($part->update() AND $doc->update())
+			{
+				$this->saveparts($fileid,$langid);
+				$this->response->redirect('parts/edit/'.$id);
+				$this->flashSession->success("Saved");
+			}
+			else
+			{
+				$this->flashSession->error("Changes not saved");
+				$this->response->redirect('parts/edit/'.$id);
+			}
+			
+		}
+		else
+		{
+			return $this->dispatcher->forward(array("controller" => "parts", "action" => "edit","id" => $id));
+		}
 	}
 
+
+	public function saveparts($fileid,$langid)
+	{
+		$lang = $this->session->get('lang');
+		$file = PhaldocFiles::findFirst("id = $fileid");
+		$this->filesave($file->id, $file->rst, $lang, $langid, 1);
+	}
 }
 

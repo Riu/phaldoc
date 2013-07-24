@@ -45,7 +45,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 	}
 
 
-	protected function filesave($file_id, $rst, $lang, $lang_id)
+	protected function filesave($file_id, $rst, $lang, $lang_id, $status = FALSE)
 	{
 		$dir = $this->config->application->docsDir;
 		$filedir = $dir.$lang.'/'.$rst.'.rst'; 
@@ -55,14 +55,18 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 			->addFrom('PhaldocDocs','d')
 			->join('PhaldocParts', 'd.part_id = p.id','p','INNER')
 			->where('p.file_id = :file:', array('file' => $file_id))
-			->andWhere('d.lang_id = :lang:', array('lang' => $lang_id))
-			->orderBy('p.ordinal ASC')
-			->getQuery()->execute();
+			->andWhere('d.lang_id = :lang:', array('lang' => $lang_id));
+		if($status)
+		{
+			$parts->andWhere('d.status = :status:', array('status' => $status));
+		}
+		$parts->orderBy('p.ordinal ASC');
+		$parts = $parts->getQuery()->execute();
 
 			$content = '';
 			foreach($parts as $p)
 			{
-				$content .= $p->title."\n";
+				$content .= ltrim($p->title)."\n";
 			
 				switch ($p->type)
 				{

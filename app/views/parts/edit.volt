@@ -8,10 +8,16 @@
 <fieldset>
 <label>Part title</label>
 {{ text_field("title", "size": 32, "class":"span6") }}
+{{ text_area("value", "class": "span11", "rows": 10) }}
 <label>Type</label>
+{% if part.ordinal > 1 %}
 {{ select("type", ['2':'Sub title 2', '3':'Sub title 3']) }}
-
-<label><button type="submit" class="btn btn-success cb">Add part</button></label>
+{% else %}
+{{ select("type", ['1':'Main title']) }}
+{% endif %}
+<label>Status</label>
+{{ select("status", ['1':'current version', '2':'out-of-date', '3':'new part', '4':'subparts to update']) }}
+<label><button type="submit" class="btn btn-success cb">Save part</button></label>
 </fieldset>
 {{ end_form() }}
 
