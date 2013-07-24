@@ -10,13 +10,9 @@
 				</button>
 				{{ link_to('','PHALDOC','class':'brand') }}
 				<section class="nav-collapse collapse">
-				<ul class="nav pull-left">
-				<li>{{ link_to('files','Index of files','title':'Index od files') }}</li>
-				<li>{{ link_to('languages','Languages','title':'Languages') }}</li>
-				<li>{{ link_to('parts','Parts list','title':'Parts list') }}</li>
-				</ul>
 				<ul class="nav pull-right">
 				<li>{{ link_to('about','About','title':'About PHALDOC') }}</li>
+				<li>{{ link_to('languages','Languages','title':'Languages') }}</li>
 				<li>{{ link_to('settings','Settings','title':'Settings') }}</li>
 				</ul>
 				</section>
