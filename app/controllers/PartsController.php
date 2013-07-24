@@ -35,7 +35,30 @@ class PartsController extends ControllerBase
 
 	public function moveAction()
 	{
-		
+		$id = $this->dispatcher->getParam("id");
+		$part = PhaldocParts::findFirst("id = '$id'");
+		$file = $part->file_id;
+		$ordinal = $part->ordinal;
+
+		if($ordinal !== '1')
+		{
+			$newordinal = $ordinal-1;
+
+			$part->ordinal = $newordinal;
+
+			$prev = PhaldocParts::findFirst("file_id = '$file' AND ordinal = '$newordinal'");
+			$prev->ordinal = $ordinal;
+
+			if($part->update() AND $prev->update())
+			{
+				$this->response->redirect('parts/'.$file);
+			}
+
+		}
+		else
+		{
+			$this->response->redirect('parts/'.$file);
+		}
 	}
 
 	public function deleteAction()
@@ -56,7 +79,7 @@ class PartsController extends ControllerBase
 					$p->update();
 					$i++;
 				}
-				$this->response->redirect('files/'.$np->id);
+				$this->response->redirect('parts/'.$part->file_id);
 			}
 		}
 

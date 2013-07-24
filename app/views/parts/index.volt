@@ -50,11 +50,9 @@
 </td>
 {% if lang == '1' %}
 <td>
-{% if part.file_id > '1' %}
 {% if part.is_tree != '1' %}
 {{ link_to('parts/delete/' ~ part.id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }}
 {% endif %} 
-{% endif %}
 </td>
 <td>
 {% if part.ordinal > '1' %}

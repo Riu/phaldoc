@@ -68,6 +68,11 @@ class FilesController extends ControllerBase
 			}
 
 		}
+
+		else
+		{
+			$this->response->redirect('files/'.$parent);
+		}
 	}
 
 	public function deleteAction()
