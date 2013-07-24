@@ -40,7 +40,28 @@ class PartsController extends ControllerBase
 
 	public function deleteAction()
 	{
+		$id = $this->dispatcher->getParam("id");
+		$part = PhaldocParts::findFirst("id = '$id'");
+		$doc = PhaldocDocs::findFirst("part_id = '$id' AND lang_id = '1'");
+		$file = $part->file_id;
+		if($_POST)
+		{
+			if($part->delete())
+			{
+				$i = 1;
+				$parts = PhaldocParts::find("file_id = '$file'");
+				foreach($parts as $p)
+				{
+					$p->ordinal = $i;
+					$p->update();
+					$i++;
+				}
+				$this->response->redirect('files/'.$np->id);
+			}
+		}
 
+		$this->view->setVar("part", $part);
+		$this->view->setVar("doc", $doc);
 	}
 
 	public function addAction()
@@ -58,7 +79,45 @@ class PartsController extends ControllerBase
 
 	public function createAction()
 	{
+		$id = $this->dispatcher->getParam("id");
+		if ($this->request->isPost()) 
+		{
+			$title = $this->request->getPost("title", "striptags");
+			$ordinal = $this->request->getPost("ordinal");
+			$type = $this->request->getPost("type");
+			$file = PhaldocFiles::findFirst("id = '$id'");
 
+			$newpart = new PhaldocParts();
+			$newpart->file_id = $file->id;
+			$newpart->ordinal = $ordinal;
+			$newpart->type = $type;
+			$newpart->is_tree = 0;
+			$newpart->updated = time();
+			$newpart->create();
+			$part_id = $newpart->id;
+
+			$langs = PhaldocLangs::find();
+
+			foreach($langs as $l)
+			{
+				$doc = new PhaldocDocs();
+				$doc->lang_id = $l->id;
+				$doc->part_id = $part_id;
+				$doc->title = $title;
+				$doc->value = '';
+				$doc->updated = time();
+				$doc->status = 3;
+				$doc->create();
+			}
+
+			$this->flashSession->success("Part has been successfully added");
+			$this->response->redirect('parts/'.$id);
+			
+		}
+		else
+		{
+			return $this->dispatcher->forward(array("controller" => "parts", "action" => "add","id" => $id));
+		}
 	}
 
 	public function editAction()
