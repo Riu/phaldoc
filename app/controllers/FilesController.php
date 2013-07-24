@@ -104,10 +104,7 @@ class FilesController extends ControllerBase
 				$langs = PhaldocLangs::find();
 				foreach($langs as $l)
 				{
-					$f = $dir.$l->lang.'/'.$name;
-					if (file_exists($f)) {
-						unlink($f);
-					}
+					$this->filedelete($l->lang, $file->rst);
 				}
 				$this->response->redirect('files/'.$np->id);
 			}

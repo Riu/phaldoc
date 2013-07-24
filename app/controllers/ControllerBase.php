@@ -95,4 +95,46 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 
 	}
 
+ 	public function filedelete($lang, $file = FALSE)
+	{
+		$dir = $this->config->application->docsDir;
+		if($file){
+			$f = $dir.$lang.'/'.$file.'.rst';
+			if (file_exists($f)){
+				unlink($f);
+			}
+		}
+		else{
+			$path = $dir.$lang;
+
+			if (substr($path, -1, 1) != "/") {
+			$path .= "/";
+			}
+		
+			$normal = glob($path . "*");
+			$hidden = glob($path . "\.?*");
+			$all = array_merge($normal, $hidden);
+		
+			foreach ($all as $a) {
+
+				if (preg_match("/(\.|\.\.)$/", $a))
+				{
+					continue;
+				}
+		
+				if (is_file($a) === TRUE) {
+					unlink($a);
+				}
+				else if (is_dir($a) === TRUE) {
+					removeDir($a);
+				}
+			}
+
+			if (is_dir($path) === TRUE) {
+				rmdir($path);
+			}
+		}
+	}
+
+
 }
