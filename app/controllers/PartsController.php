@@ -45,7 +45,15 @@ class PartsController extends ControllerBase
 
 	public function addAction()
 	{
+		$id = $this->dispatcher->getParam("id");
+		$file = PhaldocFiles::findFirst("id = '$id'");
+		$this->view->setVar("file", $file);
 
+		$count = PhaldocParts::find("file_id = '$id'");
+
+		$count = $count->count();
+		$count++;
+		$this->view->setVar("ordinal", $count);
 	}
 
 	public function createAction()

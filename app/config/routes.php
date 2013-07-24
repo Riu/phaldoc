@@ -7,10 +7,10 @@ $router->add('/', array(
 'action' => 'index'
 ));
 
-$router->add('/files/(delete|move|add|create)/([0-9]+)', array(
-'controller' => 'files',
-'action' => 1,
-'id' => 2
+$router->add('/(files|parts)/(delete|move|add|create|edit|save)/([0-9]+)', array(
+'controller' => 1,
+'action' => 2,
+'id' => 3
 ));
 
 $router->add('/(files|parts)/([0-9]+)', array(
