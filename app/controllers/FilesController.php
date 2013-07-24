@@ -79,7 +79,7 @@ class FilesController extends ControllerBase
 	{
 		$id = $this->dispatcher->getParam("id");
 		$file = PhaldocFiles::findFirst("id = '$id'");
-		if($_POST AND $file->is_parent !== '1')
+		if($this->request->isPost() AND $file->is_parent !== '1')
 		{
 			$name = $file->rst.'.rst';
 			$parent_id = $file->parent_id;

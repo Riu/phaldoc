@@ -67,7 +67,7 @@ class PartsController extends ControllerBase
 		$part = PhaldocParts::findFirst("id = '$id'");
 		$doc = PhaldocDocs::findFirst("part_id = '$id' AND lang_id = '1'");
 		$file = $part->file_id;
-		if($_POST)
+		if($this->request->isPost())
 		{
 			if($part->delete())
 			{
@@ -146,6 +146,16 @@ class PartsController extends ControllerBase
 	public function editAction()
 	{
 
+		$id = $this->dispatcher->getParam("id");
+		$part = PhaldocParts::findFirst("id = '$id'");
+		$langid = $this->session->get('langid');
+		$doc = PhaldocDocs::findFirst("part_id = '$id' AND lang_id = '$langid'");
+		$this->view->setVar("part", $part);
+		$this->view->setVar("doc", $doc);
+
+		\Phalcon\Tag::displayTo("title", $doc->title);
+		\Phalcon\Tag::displayTo("value", $doc->value);
+		\Phalcon\Tag::setDefault("type", $part->type);
 	}
 
 	public function saveAction()
