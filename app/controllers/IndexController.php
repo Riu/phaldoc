@@ -35,6 +35,11 @@ class IndexController extends ControllerBase
 		$lang = $this->dispatcher->getParam("lang");
 		if(!empty($lang))
 		{
+			$l = PhaldocLangs::findFirst("lang = '$lang'");
+			if(!empty($l->id))
+			{
+				$this->session->set('langid', $l->id);
+			}
 			$this->session->set('lang', $lang);
 			$this->cookies->set('lang', $lang, 31536000);
 		}

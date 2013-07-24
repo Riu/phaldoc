@@ -6,15 +6,6 @@ class FilesController extends ControllerBase
 	public function initialize()
 	{
 		parent::initialize();
-		$action = $this->dispatcher->getParam("action");
-		if($action !== 'index')
-		{
-			$langid = $this->session->get('langid');
-			if($langid !== '1')
-			{
-				$this->response->redirect('');
-			}
-		}
 	}
 
 	public function indexAction()

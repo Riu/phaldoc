@@ -27,10 +27,6 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 				$this->cookies->set('lang', 'en', 31536000);
 			}
 		}
-		else
-		{
-			$this->session->set('lang', $lang);
-		}
 		$this->langid();
 	}
 
@@ -40,10 +36,10 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 		$langid = $this->session->get('langid');
 		if(empty($langid))
 		{
-			$lang = PhaldocLangs::findFirst("lang = '$lang'");
-			if(!empty($lang->id))
+			$l = PhaldocLangs::findFirst("lang = '$lang'");
+			if(!empty($l->id))
 			{
-				$this->session->set('langid', $lang->id);
+				$this->session->set('langid', $l->id);
 			}
 		}
 	}
