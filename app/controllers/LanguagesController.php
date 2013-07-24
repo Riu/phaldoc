@@ -94,11 +94,11 @@ class LanguagesController extends ControllerBase
 		}
 	}
 
-	public function copylangfolder($src, $dst) 
+	public function copylangfolder($lsrc, $ldst) 
 	{
 		$appdir = $this->config->application->docsDir;
-		$src = $appdir.$src;
-		$dst = $appdir.$dst;
+		$src = $appdir.$lsrc;
+		$dst = $appdir.$ldst;
 
 		$dir = opendir($src);
 		$result = ($dir === false ? false : true);
@@ -125,7 +125,18 @@ class LanguagesController extends ControllerBase
 				closedir($dir);
 			}
 		}
-
+		$lines = file($dst.'/conf.py');
+		$value = '';
+		foreach($lines as $l)
+		{
+			$search  = array('language = \'en\'', 'en/_static');
+			$replace = array('language = \''.$ldst.'\'', $ldst.'/_static');
+			$l = str_replace($search, $replace, $l);
+			$value .= $l;
+		}
+		$fp = fopen($dst.'/conf.py' , 'w+');
+		fwrite($fp,$value);
+		fclose($fp);
 		return $result;
 	}
 }
