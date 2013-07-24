@@ -10,13 +10,28 @@ class LanguagesController extends ControllerBase
 
 	public function indexAction()
 	{
-
+		$langs = PhaldocLangs::find();
+		$count = $langs->count();
+		$this->view->setVar("langs", $langs);
+		$this->view->setVar("count", $count);
 		
 	}
 
 	public function deleteAction()
 	{
+		$id = $this->dispatcher->getParam("id");
+		$lang = PhaldocLangs::findFirst("id = '$id'");
+		if($_POST)
+		{
+			$dir = $lang->lang;
 
+			if($lang->delete())
+			{
+				$this->filedelete($dir);
+				$this->response->redirect('languages');
+			}
+		}
+		$this->view->setVar("lang", $lang);
 	}
 
 	public function addAction()
@@ -53,7 +68,7 @@ class LanguagesController extends ControllerBase
 				} 
 				else 
 				{
-					$this->copylangfolder('en', $lang) 
+					$this->copylangfolder('en', $lang);
 					$this->flashSession->success("Lang has been successfully added");
 					$this->response->redirect('languages');
 				}

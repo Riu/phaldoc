@@ -1,5 +1,5 @@
 <section class="span12">
-<h2>About</h2>
+<h3>About</h3>
 <p>{{ image('assets/img/logo.png', "alt": "Phalcon", "class": "pull-right") }}Phaldoc is small app create to translate documentation of Phalcon framework from English to other languages.</p>
 <h3>Why?</h3>
 <p>Idea is born because I realised that there are some problems with translate docs of Phalcon. On #phalconphp IRC channel, some time ago, @souf and @niden talked about how to do translate for many languages with control what is current version of the documentation.</p>
