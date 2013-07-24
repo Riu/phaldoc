@@ -48,4 +48,51 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 		}
 	}
 
+
+	protected function filesave($file_id, $rst, $lang, $lang_id)
+	{
+		$dir = $this->config->application->docsDir;
+		$filedir = $dir.$lang.'/'.$rst.'.rst'; 
+
+		$parts = $this->modelsManager->createBuilder()
+			->columns(array('p.type','d.title', 'd.value'))
+			->addFrom('PhaldocDocs','d')
+			->join('PhaldocParts', 'd.part_id = p.id','p','INNER')
+			->where('p.file_id = :file:', array('file' => $file_id))
+			->andWhere('d.lang_id = :lang:', array('lang' => $lang_id))
+			->orderBy('p.ordinal ASC')
+			->getQuery()->execute();
+
+			$content = '';
+			foreach($parts as $p)
+			{
+				$content .= $p->title."\n";
+			
+				switch ($p->type)
+				{
+					case '1':
+						$char = '=';
+					break;
+
+					case '2':
+						$char = '-';
+					break;
+
+					case '3':
+						$char = '^';
+					break;
+				}
+
+				$undertitle = preg_replace('/./', $char, $p->title);
+				$content .= $undertitle."\n";
+				$content .= "\n";
+				$content .= $p->value."\n";
+			}
+
+		$fp = fopen($filedir , 'w+');
+		fwrite($fp,$content);
+		fclose($fp);
+
+	}
+
 }

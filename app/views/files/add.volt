@@ -12,7 +12,11 @@
 	{{ text_field("rst", "size": 32, "class":"span6") }}
 	<label>Title of subdocument</label>
 	{{ text_field("title", "size": 32, "class":"span6") }}
+	{% if file.id > 1 %}
 	{{ hidden_field("type", "value": file.type) }}
+	{% else %}
+	{{ hidden_field("type", "value": "2") }}
+	{% endif %}
 	{{ hidden_field("ordinal", "value": ordinal) }}
 	<label><button type="submit" class="btn btn-success cb">Add file</button></label>
 	</fieldset>

@@ -104,10 +104,10 @@ class FilesController extends ControllerBase
 				$langs = PhaldocLangs::find();
 				foreach($langs as $l)
 				{
-#					$f = $dir.$l['lang'].'/'.$name;
-#					if (file_exists($f)) {
-#						unlink($f)
-#					}
+					$f = $dir.$l->lang.'/'.$name;
+					if (file_exists($f)) {
+						unlink($f);
+					}
 				}
 				$this->response->redirect('files/'.$np->id);
 			}
@@ -139,6 +139,15 @@ class FilesController extends ControllerBase
 			$title = $this->request->getPost("title", "striptags");
 			$ordinal = $this->request->getPost("ordinal");
 			$type = $this->request->getPost("type");
+
+			if($type === '2')
+			{
+				$rst = 'reference/'.$rst;
+			}
+			else
+			{
+				$rst = 'api/'.$rst;
+			}
 
 			$count = PhaldocFiles::findFirst("rst = '$rst' AND type = '$type'");
 
@@ -186,6 +195,8 @@ class FilesController extends ControllerBase
 						$doc->updated = time();
 						$doc->status = 3;
 						$doc->create();
+
+						$this->filesave($file->id, $rst, $l->lang, $l->id);
 					}
 
 					$this->flashSession->success("File has been successfully added");
