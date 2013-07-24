@@ -195,6 +195,13 @@ class PartsController extends ControllerBase
 				$this->saveparts($fileid,$langid);
 				if($langid==='1')
 				{
+					$subp = PhaldocDocs::find("part_id = '$id' AND lang_id != '$langid'");
+					foreach($subp as $sp)
+					{
+						$sp->status = '2';
+						$sp->update();
+					}
+
 					if($ordinal!=='1')
 					{
 						$firstpart = PhaldocParts::findFirst("file_id = '$fileid' AND ordinal = '1'");
@@ -207,11 +214,23 @@ class PartsController extends ControllerBase
 						}
 					}
 
-					$subp = PhaldocDocs::find("part_id = '$id' AND lang_id != '$langid'");
-					foreach($subp as $sp)
-					{
-						$sp->status = '2';
-						$sp->update();
+				}
+				else
+				{
+					$firstpart = PhaldocParts::findFirst("file_id = '$fileid' AND ordinal = '1'");
+					$firstpartid = $firstpart->id;
+					$spart = $this->modelsManager->createBuilder()
+					->addFrom('PhaldocParts','p')
+					->join('PhaldocDocs', 'p.id = d.part_id','d','INNER')
+					->where('p.file_id = :parent:', array('parent' => $fileid))
+					->andWhere('d.lang_id = :lang:', array('lang' => $langid))
+					->andWhere('d.status = :status:', array('status' => '2'))
+					->getQuery()->execute();
+					$count = $spart->count();
+					if(empty($count))
+					{	$firstdoc = PhaldocDocs::findFirst("part_id = '$firstpartid' AND lang_id = '$langid'");
+						$firstdoc->status = '1';
+						$firstdoc->update();
 					}
 				}
 				$this->response->redirect('parts/edit/'.$id);
