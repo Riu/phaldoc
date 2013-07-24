@@ -13,10 +13,10 @@ $router->add('/files/(delete|move|add|create)/([0-9]+)', array(
 'id' => 2
 ));
 
-$router->add('/files/([0-9]+)', array(
-'controller' => 'files',
+$router->add('/(files|parts)/([0-9]+)', array(
+'controller' => 1,
 'action' => 'index',
-'parent' => 1
+'parent' => 2
 ));
 
 
