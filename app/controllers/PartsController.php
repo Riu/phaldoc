@@ -176,6 +176,7 @@ class PartsController extends ControllerBase
 			$type = $this->request->getPost("type");
 			$status = $this->request->getPost("status");
 			$part = PhaldocParts::findFirst("id = '$id'");
+			$ordinal = $part->ordinal;
 			$fileid = $part->file_id;
 			$part->type = $type;
 
@@ -192,6 +193,27 @@ class PartsController extends ControllerBase
 			if($part->update() AND $doc->update())
 			{
 				$this->saveparts($fileid,$langid);
+				if($langid==='1')
+				{
+					if($ordinal!=='1')
+					{
+						$firstpart = PhaldocParts::findFirst("file_id = '$fileid' AND ordinal = '1'");
+						$firstpartid = $firstpart->id;
+						$subf = PhaldocDocs::find("part_id = '$firstpartid' AND lang_id != '$langid'");
+						foreach($subf as $sf)
+						{
+							$sf->status = '4';
+							$sf->update();
+						}
+					}
+
+					$subp = PhaldocDocs::find("part_id = '$id' AND lang_id != '$langid'");
+					foreach($subp as $sp)
+					{
+						$sp->status = '2';
+						$sp->update();
+					}
+				}
 				$this->response->redirect('parts/edit/'.$id);
 				$this->flashSession->success("Saved");
 			}
@@ -213,7 +235,7 @@ class PartsController extends ControllerBase
 	{
 		$lang = $this->session->get('lang');
 		$file = PhaldocFiles::findFirst("id = $fileid");
-		$this->filesave($file->id, $file->rst, $lang, $langid, 1);
+		$this->filesave($file->id, $file->rst, $lang, $langid);
 	}
 }
 
