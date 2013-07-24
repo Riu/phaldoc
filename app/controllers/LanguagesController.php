@@ -14,5 +14,19 @@ class LanguagesController extends ControllerBase
 		
 	}
 
+	public function deleteAction()
+
+
+	}
+
+	public function addAction()
+	{
+
+	}
+
+	public function createAction()
+	{
+
+	}
 }
 
