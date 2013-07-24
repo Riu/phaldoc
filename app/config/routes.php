@@ -25,6 +25,12 @@ $router->add('/(languages|parts)', array(
 'action' => 'index'
 ));
 
+$router->add('/languages/(delete)/([0-9]+)', array(
+'controller' => 'languages',
+'action' => 1,
+'id' => 2
+));
+
 $router->add('/(about|settings)', array(
 'controller' => 'index',
 'action' => 1

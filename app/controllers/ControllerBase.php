@@ -126,7 +126,7 @@ class ControllerBase extends \Phalcon\Mvc\Controller
 					unlink($a);
 				}
 				else if (is_dir($a) === TRUE) {
-					removeDir($a);
+					$this->filedelete($a);
 				}
 			}
 

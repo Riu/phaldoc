@@ -20,7 +20,7 @@
 <td>{{ lang.langname }}</td>
 <td>
 {% if lang.id != '1' %}
-{{ link_to('languages/delete/' ~ file.file_id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }}
+{{ link_to('languages/delete/' ~ lang.id,'<i class="icon-remove-sign icon-white"></i>','class':'btn btn-mini btn-danger') }}
 {% endif %}
 </td>
 </tr>

@@ -57,17 +57,31 @@ class LanguagesController extends ControllerBase
 			}
 			else
 			{
-				$file = new PhaldocLangs();
-				$file->lang = $lang;
-				$file->langname = $langname;
+				$new = new PhaldocLangs();
+				$new->lang = $lang;
+				$new->langname = $langname;
 
-				if (!$file->create()) 
+				if (!$new->create()) 
 				{
 						$this->flashSession->error('All inputs are required');
 						$this->response->redirect('languages/add');
 				} 
 				else 
 				{
+					$lang_id = $new->id;
+					$docs = PhaldocDocs::find("lang_id = '1'");
+					foreach($docs as $d)
+					{
+						$doc = new PhaldocDocs();
+						$doc->lang_id = $lang_id;
+						$doc->part_id = $d->part_id;
+						$doc->title = $d->title;
+						$doc->value = $d->value;
+						$doc->updated = $d->updated;
+						$doc->status = $d->status;
+						$doc->create();
+					}
+
 					$this->copylangfolder('en', $lang);
 					$this->flashSession->success("Lang has been successfully added");
 					$this->response->redirect('languages');
@@ -100,7 +114,7 @@ class LanguagesController extends ControllerBase
 					{
 						if ( is_dir($src . '/' . $file) )
 						{
-							$result = recurseCopy($src . '/' . $file,$dst . '/' . $file); 
+							$result = $this->copylangfolder($src . '/' . $file,$dst . '/' . $file); 
 						}
 						else 
 						{
