@@ -20,7 +20,7 @@ $router->add('/(files|parts)/([0-9]+)', array(
 ));
 
 
-$router->add('/(languages|parts)', array(
+$router->add('/(languages|parts|json)', array(
 'controller' => 1,
 'action' => 'index'
 ));
@@ -40,6 +40,11 @@ $router->add('/lang/{lang:[a-z]{2}}', array(
 'controller' => 'index',
 'action' => 'lang',
 'lang' => 'pl'
+));
+
+$router->add('/json/create', array(
+'controller' => 'json',
+'action' => 'create'
 ));
 
 $router->add('/setup/([0-9]+)', array(
