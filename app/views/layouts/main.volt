@@ -13,6 +13,7 @@
 				<ul class="nav pull-right">
 				<li>{{ link_to('about','About','title':'About PHALDOC') }}</li>
 				<li>{{ link_to('languages','Languages','title':'Languages') }}</li>
+				<li>{{ link_to('json','Json','title':'Json') }}</li>
 				<li>{{ link_to('settings','Settings','title':'Settings') }}</li>
 				</ul>
 				</section>
