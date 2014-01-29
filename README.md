@@ -32,7 +32,7 @@ At present app is ready and works fine, but in future I would like:
 Contact
 -------
 
-If you have question, or have some work/ideas for me - please contact with my G+ profile: [Riu on G+](https://plus.google.com/116761443278536468195)
+If you have question, or have some work/ideas for me - please contact with my G+ profile: [Riu on G+](https://plus.google.com/+RadoslawMuszynski)
 
 
 
