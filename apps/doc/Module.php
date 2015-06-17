@@ -1,4 +1,4 @@
-<?php namespace Phaldoc;
+<?php namespace Doc;
 
 class Module implements \Phalcon\Mvc\ModuleDefinitionInterface 
 {
@@ -10,8 +10,8 @@ class Module implements \Phalcon\Mvc\ModuleDefinitionInterface
         $loader = new \Phalcon\Loader();
 
         $namespace = array(
-            __NAMESPACE__.'\Controllers'    => '../apps/phaldoc/'.$config->app->controllers,
-            __NAMESPACE__.'\Models'         => '../apps/phaldoc/'.$config->app->models
+            __NAMESPACE__.'\Controllers'    => '../apps/doc/'.$config->app->controllers,
+            __NAMESPACE__.'\Models'         => '../apps/doc/'.$config->app->models
         );
         if(!empty($config->library)) 
         {
@@ -41,12 +41,13 @@ class Module implements \Phalcon\Mvc\ModuleDefinitionInterface
 
         $di->set('view', function() use ($config){
             $view = new \Phalcon\Mvc\View();
-            $view->setViewsDir('../apps/phaldoc/'.$config->app->views.'/');
+            $view->setViewsDir('../apps/doc/'.$config->app->views);
+            $view->setTemplateBefore('main');
             $view->registerEngines(array(
                 '.volt' => function($view, $di) {
                     $volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
                     $volt->setOptions(array(
-                        'compiledPath' => '../apps/phaldoc/cache/volt/',
+                        'compiledPath' => '../apps/doc/cache/volt/',
                         'compiledExtension' => '.php',
                         'compileAlways' => true,
                         'compiledSeparator' => '_'
