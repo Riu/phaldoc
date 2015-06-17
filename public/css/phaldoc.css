@@ -3,3 +3,12 @@ a.navbar-brand{
     font-weight: bold;
     font-size: 1.6em;
 }
+.copyright{
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+}
+.copyright p{
+    margin-top: 10px; 
+    font-size: 11px;
+    float: left;
+}

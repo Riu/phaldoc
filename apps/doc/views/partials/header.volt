@@ -14,6 +14,15 @@
         <li>{{ link_to('settings','<i class="glyphicon glyphicon-tower"></i> '~ i18n._('settings_title')) }}</li>
         <li>{{ link_to('activity','<i class="glyphicon glyphicon-stats"></i> '~ i18n._('activity_title')) }}</li>
         </ul>
+<ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ i18n._('phaldoc_changelg') }} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>{{ link_to('lg/pl','Polski') }}</li>
+            <li>{{ link_to('lg/en','English') }}</li>
+          </ul>
+        </li>
+      </ul>
         </section>
     </section>
 </section>

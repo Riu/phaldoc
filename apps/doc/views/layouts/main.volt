@@ -11,10 +11,7 @@
 {{ partial("partials/header") }}
 {{ content() }}
 {{ partial("partials/footer") }}
-{{ javascript_include("themes/default/js/jquery-1.11.2.min.js") }}
-{{ javascript_include("themes/default/js/bootstrap.min.js") }}
-{{ javascript_include("themes/default/js/plugins/validate/jquery.validate.min.js") }}
-{{ javascript_include("themes/default/js/plugins/validate/messages_pl.min.js") }}
-{{ javascript_include("themes/default/js/app.js") }}
+{{ javascript_include("js/jquery-1.11.3.min.js") }}
+{{ javascript_include("js/bootstrap.min.js") }}
 </body>
 </html>
