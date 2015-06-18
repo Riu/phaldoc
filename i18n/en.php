@@ -11,6 +11,6 @@ $messages = array(
     "footer_version"            => "Version of Phalcon",
     "footer_createdby"          => "App created by",
     "index_title"               => "Welcome in Phaldoc app",
-    "index_preinfo"             => "Witaj w Phaldocu - aplikacji do tworzenia dokumentacji, oraz tłumaczenia jest na wiele wersji językowych. Aplikacja ta powstała ponieważ, mimo wielu narzędzi służących do tworzenia i tłumaczenia dokumentacji, nadal nie ma takiej, która spełaniała by spełaniała moje oczekiwania.",
-    "index_preinfo2"            => "Zadaniem Phaldoca ma być szybkie tworzenie dokumentacji i jej tłumaczenie na wybraną ilość języków, oraz eksport dokumentacji do kilku formatów: html, pdf, json."
+    "index_preinfo"             => "Welcome in Phaldoc - application for creating documentation and translations into many languages. This application was created because, despite the many tools used to create and documentation translation, still no one that would meet my expectations.",
+    "index_preinfo2"            => "Phaldoc task will be to quickly create documentation and its translation into specified number of languages, and export documentation to several formats: HTML, PDF, Json."
 );

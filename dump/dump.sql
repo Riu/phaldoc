@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `phaldoc_translates` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `line_id` int(10) unsigned NOT NULL,
   `lang` varchar(2) NOT NULL DEFAULT '',
-  `translate` text COLLATE utf8_unicode_ci,
+  `translate` text,
   `updated` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
