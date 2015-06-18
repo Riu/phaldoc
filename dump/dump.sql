@@ -9,14 +9,14 @@ CREATE TABLE IF NOT EXISTS `phaldoc_files` (
   KEY `project_id` (`project_id`),
   KEY `parent_id` (`parent_id`),
   KEY `is_parent` (`is_parent`)
-) ENGINE=InnoDB DEFAULT  AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `phaldoc_langs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `lang` varchar(2) NOT NULL DEFAULT '',
   `langname` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT  AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 
 INSERT INTO `phaldoc_langs` (`id`, `lang`, `langname`) VALUES
@@ -33,17 +33,16 @@ CREATE TABLE IF NOT EXISTS `phaldoc_lines` (
   `updated` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `file_id` (`file_id`)
-) ENGINE=InnoDB DEFAULT AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 
 CREATE TABLE IF NOT EXISTS `phaldoc_projects` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `project` varchar(64) NOT NULL DEFAULT '',
-  `copyright` varchar(128) NOT NULL DEFAULT '',
+  `describe` varchar(255) NOT NULL DEFAULT '',
   `version` varchar(24) NOT NULL DEFAULT '',
-  `release` varchar(24) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 
 CREATE TABLE IF NOT EXISTS `phaldoc_translates` (
@@ -56,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `phaldoc_translates` (
   PRIMARY KEY (`id`),
   KEY `line_id` (`line_id`),
   KEY `lang` (`lang`)
-) ENGINE=InnoDB DEFAULT AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 ;
 
 
 ALTER TABLE `phaldoc_lines`
