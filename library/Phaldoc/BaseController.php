@@ -38,8 +38,12 @@ class BaseController extends \Phalcon\Mvc\Controller
 
     protected function _getTranslation()
     {
-        //Ask browser what is the best language
-        $language = $this->request->getBestLanguage();
+        $language = $this->session->get('lg');
+        if(empty($language))
+        {
+            //Ask browser what is the best language
+            $language = $this->request->getBestLanguage();
+        }
 
         //Check if we have a translation file for that lang
         if (file_exists("../i18n/".$language.".php")) {
