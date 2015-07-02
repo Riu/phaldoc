@@ -1,3 +1,4 @@
+{{ partial("breadcrumb") }}
 <section class="container">
 <section class="row">
 {% block content %}

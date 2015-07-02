@@ -7,4 +7,25 @@ class ProjectsController extends \Phaldoc\BaseController
         $projects = \Phaldoc\Models\Projects::find();
         $this->view->setVar("projects", $projects);
     }
+
+    public function addAction()
+    {
+
+    }
+
+    public function viewAction()
+    {
+
+    }
+
+    public function editAction()
+    {
+
+    }
+
+    public function deleteAction()
+    {
+
+    }
+
 }

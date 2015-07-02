@@ -59,6 +59,9 @@ class Module implements \Phalcon\Mvc\ModuleDefinitionInterface
 
             return $view;
         });
+        $di->set('breadcrumb', function(){
+            return new \Phaldoc\Breadcrumb();
+        });
         $di->set('flashSession', function(){
             return new \Phalcon\Flash\Session(array(
                 'error' => 'alert alert-warning alert-small',

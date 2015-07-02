@@ -12,3 +12,28 @@ a.navbar-brand{
     font-size: 11px;
     float: left;
 }
+
+
+.breadcrumb {
+  padding: 0px 0px;
+  margin-bottom: 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 4px;
+  font-size: 1.05em;
+}
+.breadcrumb > li {
+  display: inline-block;
+}
+.breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: #cccccc;
+}
+.breadcrumb > li i {
+  color: #cccccc;
+  font-size: 0.8em;
+  padding: 5px 5px;
+}
+.breadcrumb > .active {
+  color: #777777;
+}

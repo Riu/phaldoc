@@ -2,6 +2,15 @@
 
 class IndexController extends \Phaldoc\BaseController
 {
+
+    protected function initialize()
+    {
+        
+        parent::initialize();
+        $title = $this->i18n->_('b_index_title');
+        \Phalcon\Tag::appendTitle(" - ".$title);
+        $this->breadcrumb->add('',$title);
+    }    
     public function indexAction()
     {
 
