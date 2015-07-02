@@ -2,6 +2,15 @@
 
 class ProjectsController extends \Phaldoc\BaseController
 {
+
+    protected function initialize()
+    {
+        parent::initialize();
+        $title = $this->i18n->_('projects_title');
+        \Phalcon\Tag::appendTitle(" - ".$title);
+        $this->breadcrumb->add('projects',$title);
+    }    
+
     public function indexAction()
     {
         $projects = \Phaldoc\Models\Projects::find();
