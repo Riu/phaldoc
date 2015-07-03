@@ -36,6 +36,13 @@ class BaseController extends \Phalcon\Mvc\Controller
         Tag::setTitle($this->i18n->_('phaldoc_title'));
     }
 
+    protected function appendTitle($slug,$key)
+    {
+        $title = $this->i18n->_($key);
+        \Phalcon\Tag::appendTitle(" - ".$title);
+        $this->breadcrumb->add($slug,$title);        
+    }
+
     protected function _getTranslation()
     {
         $language = $this->session->get('lg');

@@ -6,9 +6,7 @@ class ProjectsController extends \Phaldoc\BaseController
     protected function initialize()
     {
         parent::initialize();
-        $title = $this->i18n->_('projects_title');
-        \Phalcon\Tag::appendTitle(" - ".$title);
-        $this->breadcrumb->add('projects',$title);
+        $this->appendTitle('projects','projects_title');
     }    
 
     public function indexAction()
@@ -19,30 +17,22 @@ class ProjectsController extends \Phaldoc\BaseController
 
     public function addAction()
     {
-        $title = $this->i18n->_('projects_add_title');
-        \Phalcon\Tag::appendTitle(" - ".$title);
-        $this->breadcrumb->add('projects',$title);
+        $this->appendTitle('add','projects_add_title');
     }
 
     public function viewAction()
     {
-        $title = $this->i18n->_('projects_view_title');
-        \Phalcon\Tag::appendTitle(" - ".$title);
-        $this->breadcrumb->add('projects',$title);
+        $this->appendTitle('view','projects_view_title');
     }
 
     public function editAction()
     {
-        $title = $this->i18n->_('projects_edit_title');
-        \Phalcon\Tag::appendTitle(" - ".$title);
-        $this->breadcrumb->add('projects',$title);
+        $this->appendTitle('edit','projects_edit_title');
     }
 
     public function deleteAction()
     {
-        $title = $this->i18n->_('projects_delete_title');
-        \Phalcon\Tag::appendTitle(" - ".$title);
-        $this->breadcrumb->add('projects',$title);
+        $this->appendTitle('delete','projects_delete_title');
     }
 
 }
