@@ -1,6 +1,6 @@
 <?php
 $messages = array(
-    "phaldoc_title"      => "Phaldoc - Documentation",
+    "phaldoc_title"             => "Phaldoc - Documentation",
     "phaldoc_changelg"          => "Change language",
     "projects_title"            => "Projects",
     "settings_title"            => "Settings",
