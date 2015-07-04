@@ -5,9 +5,7 @@ class ActivityController extends \Phaldoc\BaseController
     protected function initialize()
     {
         parent::initialize();
-        $title = $this->i18n->_('activity_title');
-        \Phalcon\Tag::appendTitle(" - ".$title);
-        $this->breadcrumb->add('activity',$title);
+        $this->appendTitle('activity','activity_title');
     }    
 
     public function indexAction()

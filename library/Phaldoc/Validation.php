@@ -183,7 +183,7 @@ class Validation
 
     public function msg($message = 'Password doesn\'t match confirmation')
     {
-        $this->validation->appendMessage('jhk');
+        $this->validation->appendMessage($message);
         return $this;
     }
 

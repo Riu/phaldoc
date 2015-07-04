@@ -21,4 +21,7 @@ $messages = array(
     // breadcrumbs
     "b_title"                   => "Strona główna",
     "b_index_title"             => "Witaj na stronie głównej Phaldoca",
+
+    // validation
+    "validation_project_required"    => "Nazwa projektu jest wymagana",
 );
