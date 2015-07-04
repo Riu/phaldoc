@@ -20,7 +20,7 @@
     </section>
 </section>
 <section class="form-group">
-    <label class="col-lg-4 control-label" for="inputPassword">Status modułu:</label>
+    <label class="col-lg-4 control-label" for="inputPassword">Wersja projektu:</label>
     <section class="col-lg-3">
     {{ text_field("version", "size": 160,"placeholder": "Wersja...","class": "form-control") }}
     </section>

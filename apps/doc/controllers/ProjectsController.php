@@ -30,8 +30,7 @@ class ProjectsController extends \Phaldoc\BaseController
             $data = $validation->render($_POST);
 
             if($data['success'] == '1'){
-                $rec = \Categories\Categories::factory()
-                    ->add($project, $describe, $version);
+                $rec = (new \Phaldoc\Projects)->add($project, $describe, $version);
 
                 $this->flashSession->success('Projekt został dodany.');
                 return $this->response->redirect('projects');
