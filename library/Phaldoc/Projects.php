@@ -17,4 +17,11 @@ class Projects extends \Phaldoc\Api {
         }
     }
 
+    public function save($project, $describe, $version)
+    {
+        return $this->params(
+            array("project", "describe", "version"),
+            array($project, $describe, $version)
+        )->update();
+    }
 }

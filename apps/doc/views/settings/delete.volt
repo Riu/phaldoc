@@ -1,11 +1,11 @@
 {% extends "template.volt" %}
 {% block content %}
 <section class="col-lg-12">
-<h3>Usuwanie projektu</h3>
-<p>Na pewno chcesz usunąć projekt <strong>{{ project.project }}</strong> ?</p>
+<h3>Usuwanie języka</h3>
+<p>Na pewno chcesz usunąć język <strong>{{ langs.langname }}</strong> ?</p>
 {{ flashSession.output() }}
 </article>
-{{ form('projects/delete/' ~ project.id, 'method': 'post', 'class': 'form-horizontal') }}
+{{ form('settings/delete/' ~ langs.id, 'method': 'post', 'class': 'form-horizontal') }}
         {{ hidden_field("id") }}
         <section class="form-group">
             <section class="col-lg-4">

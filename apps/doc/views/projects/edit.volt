@@ -1,8 +1,8 @@
 {% extends "template.volt" %}
 {% block content %}
 <section class="col-lg-12">
-<h2>Edycja modułu</h2>
-<p>Zmeniasz ustawienia projektu <em>{{ project.term }}</em>.</p>
+<h3>Edycja informacji o projekcie</h3>
+<p>Zmeniasz ustawienia projektu <em>{{ project.project }}</em>.</p>
 {{ flashSession.output() }}
 {{ form('projects/edit/' ~ project.id, 'method': 'post', 'class': 'form-horizontal') }}
 <section class="form-group">
@@ -20,7 +20,7 @@
     </section>
 </section>
 <section class="form-group">
-    <label class="col-lg-4 control-label" for="inputPassword">Status modułu:</label>
+    <label class="col-lg-4 control-label" for="inputPassword">Wersja projektu:</label>
     <section class="col-lg-3">
     {{ text_field("version", "size": 160,"placeholder": "Wersja...","class": "form-control") }}
     </section>

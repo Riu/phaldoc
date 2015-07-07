@@ -8,6 +8,10 @@ $messages = array(
     "projects_delete_title"     => "Usuń projekt",
     "projects_edit_title"       => "Edytuj projekt",
     "settings_title"            => "Ustawienia",
+    "settings_add_title"        => "Dodaj język",
+    "settings_delete_title"     => "Usuń język",
+    "settings_edit_title"       => "Edytuj język",
+    "settings_settings_title"       => "Edytuj ustawienia w pliku konfiguracyjnym",
     "activity_title"            => "Ostania aktywność",
     "languages_title"           => "Ustawienia języków",
     "footer_statsfor"           => "Statystyki dla",
@@ -24,4 +28,18 @@ $messages = array(
 
     // validation
     "validation_project_required"    => "Nazwa projektu jest wymagana",
+    "validation_saved"           => "Zmiany zostały zapisane",
+    "validation_langname_required"    => "Nazwa języka jest wymagana",
+    "validation_lang_required"    => "Skrót języka jest wymagany",
+
+    // projects
+    "project_added"             => "Projekt został dodany",
+    "project_deleted"           => "Projekt został usunięty",
+    "project_notdeleted"        => "Projekt nie został usunięty",
+
+    // settings
+    "settings_added"             => "Język został dodany",
+    "settings_deleted"           => "Język został usunięty",
+    "settings_notdeleted"        => "Język nie został usunięty",
+    "settings_notsettings"       => "Zmiany nie zostały zapisane",
 );

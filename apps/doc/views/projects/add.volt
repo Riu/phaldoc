@@ -1,7 +1,7 @@
 {% extends "template.volt" %}
 {% block content %}
 <section class="col-lg-12">
-<h2>Dodaj nowy projekt</h2>
+<h3>Dodaj nowy projekt</h3>
 <p>Dodanie nowego projektu rozpoczyna proces tworzenie dokumetacji dla niego.</p>
 {{ flashSession.output() }}
 {{ form('projects/add', 'method': 'post', 'class': 'form-horizontal') }}
