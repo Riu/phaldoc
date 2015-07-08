@@ -238,7 +238,22 @@ class ProjectsController extends \Phaldoc\BaseController
 
     public function viewfileAction()
     {
-        $this->appendTitle('deletefile','projects_deletefile_title');
+        $paramid = $this->dispatcher->getParam('id');
+        $paramfid = $this->dispatcher->getParam('fid');
+        $record = (new \Phaldoc\Projects)->id($paramid);
+        $file = (new \Phaldoc\Files)->id($paramfid);
+        $this->appendTitle('view/'.$record->query->id,$record->query->project);
+        $this->appendTitle('deletefile','projects_viewfile_title');
+        $this->view->setVar("project", $record->query);
+        $this->view->setVar("file", $file->query);
+        $lines = $this->modelsManager->createBuilder()->columns(array('l.*', 't.*'))
+                        ->from(array('l' => '\Phaldoc\Models\Lines'))
+                        ->join('\Phaldoc\Models\Translates', 'l.id = t.line_id','t','INNER')
+                        ->where('l.file_id = '.$paramfid.'')
+                        ->orderBy('l.ordinal ASC')
+                        ->groupBy('t.line_id')
+                        ->getQuery()->execute();
+        $this->view->setVar("lines", $lines);
     }
 
     public function movefileAction()

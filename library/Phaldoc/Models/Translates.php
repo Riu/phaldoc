@@ -17,6 +17,6 @@ class Translates extends \Phaldoc\Model
 
     public function getSource()
     {
-        return 'phaldoc_lines';
+        return 'phaldoc_translates';
     }
 }
