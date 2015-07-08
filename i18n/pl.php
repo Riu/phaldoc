@@ -3,10 +3,13 @@ $messages = array(
     "phaldoc_title"             => "Phaldoc - Tworzenie dokumentacji",
     "phaldoc_changelg"          => "Zmień język",
     "projects_title"            => "Projekty",
-    "projects_view_title"       => "Przeglądaj projekty",
+    "projects_view_title"       => "Przeglądaj pliki",
     "projects_add_title"        => "Dodaj projekt",
     "projects_delete_title"     => "Usuń projekt",
     "projects_edit_title"       => "Edytuj projekt",
+    "projects_addfile_title"    => "Dodaj plik do projektu",
+    "projects_deletefile_title" => "Usuń plik",
+    "projects_editfile_title"   => "Edytuj plik",
     "settings_title"            => "Ustawienia",
     "settings_add_title"        => "Dodaj język",
     "settings_delete_title"     => "Usuń język",
@@ -31,6 +34,7 @@ $messages = array(
     "validation_saved"           => "Zmiany zostały zapisane",
     "validation_langname_required"    => "Nazwa języka jest wymagana",
     "validation_lang_required"    => "Skrót języka jest wymagany",
+    "validation_rst_required"     => "Nazwa pliku jest wymagana",
 
     // projects
     "project_added"             => "Projekt został dodany",
@@ -42,4 +46,5 @@ $messages = array(
     "settings_deleted"           => "Język został usunięty",
     "settings_notdeleted"        => "Język nie został usunięty",
     "settings_notsettings"       => "Zmiany nie zostały zapisane",
+    "settings_fileadded"         => "Plik został dodany",
 );

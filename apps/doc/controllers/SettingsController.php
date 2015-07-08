@@ -103,7 +103,7 @@ class SettingsController extends \Phaldoc\BaseController
     public function settingsAction()
     {
 
-        $this->appendTitle('delete','settings_settins_title');
+        $this->appendTitle('delete','settings_settings_title');
         $file = '../config/config.ini';
         
         if ($this->request->isPost() == true) 

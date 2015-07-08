@@ -20,10 +20,10 @@
 {% for project in projects %}
 <tr>
 <td>{{ project.id }}</td>
-<td>{{ link_to('projects/view/' ~ project.id, '<strong>' ~ project.project ~ '</strong>', 'title':'Edytuj moduł ' ~ project.project ) }}</td>
+<td>{{ link_to('projects/view/' ~ project.id, '<strong>' ~ project.project ~ '</strong>', 'title':'Edytuj projekt ' ~ project.project ) }}</td>
 <td>{{ project.describe }}</td>
 <td>{{ project.version }}</td>
-<td>{{ link_to('projects/edit/' ~ project.id, 'Edytuj projekt', 'title':'Edytuj projekt', "class":"btn btn-info btn-sm" ) }} {{ link_to('projects/delete/' ~ project.id, 'Usuń projekt', 'title':'Usuń projekt', "class":"btn btn-warning btn-sm" ) }}</td>
+<td>{{ link_to('projects/view/' ~ project.id, 'Przeglądaj pliki', 'title':'Przeglądaj pliki', "class":"btn btn-primary btn-sm" ) }} {{ link_to('projects/edit/' ~ project.id, 'Edytuj projekt', 'title':'Edytuj projekt', "class":"btn btn-info btn-sm" ) }} {{ link_to('projects/delete/' ~ project.id, 'Usuń projekt', 'title':'Usuń projekt', "class":"btn btn-warning btn-sm" ) }}</td>
 </tr>
 {% endfor %}
 </tbody>
