@@ -278,4 +278,22 @@ class ProjectsController extends \Phaldoc\BaseController
         $file->update();
         return $this->response->redirect('projects/view/'.$record->query->id);
     }
+
+    // Managment of elements in file
+
+    public function addlineAction()
+    {
+        $paramid = $this->dispatcher->getParam('id');
+        $paramfid = $this->dispatcher->getParam('fid');
+        $record = (new \Phaldoc\Projects)->id($paramid);
+        $file = (new \Phaldoc\Files)->id($paramfid);
+        $this->appendTitle('view/'.$record->query->id,$record->query->project);
+        $this->breadcrumb->add('viewfile/'.$file->query->project_id.'/'.$file->id,$file->query->rst,$file->query->rst, 2);
+        $this->appendTitle('','projects_addline_title');
+
+
+        $this->view->setVar("project", $record->query);
+        $this->view->setVar("file", $file->query);
+        $this->view->setVar("elements", (array) $this->config->elements);
+    }
 }

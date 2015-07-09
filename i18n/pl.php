@@ -11,6 +11,7 @@ $messages = array(
     "projects_deletefile_title" => "Usuń plik",
     "projects_editfile_title"   => "Edytuj plik",
     "projects_viewfile_title"   => "Lista elementów dla pliku",
+    "projects_addline_title"    => "Dodaj element",
     "settings_title"            => "Ustawienia",
     "settings_add_title"        => "Dodaj język",
     "settings_delete_title"     => "Usuń język",
